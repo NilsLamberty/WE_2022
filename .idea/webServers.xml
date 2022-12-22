@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="05955a52-c091-4082-b8fb-37245fd8b329" name="local" url="http://localhost">
+        <fileTransfer mountedRoot="D:\XAMPP\htdocs\ci" accessType="MOUNT" port="0" />
+      </webServer>
+      <webServer id="9b1727b4-48ab-4260-846a-328818b36181" name="remote" url="https://nils-lamberty.de">
+        <fileTransfer accessType="SFTP" host="ssh.strato.de" port="22" sshConfigId="bc27a26b-b609-4029-bd67-8eb92c9d2042" sshConfig="nils-lamberty.de@ssh.strato.de:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
