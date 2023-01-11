@@ -133,7 +133,7 @@
                 <button type="reset" class="btn btn-info">Reset</button>
                 <?php
                     if (isset($username)) {
-                        echo "<button type='submit' class='btn btn-info' name='abort'>Abbrechen</button>";
+                        echo "<button type='reset' class='btn btn-info' name='abort'>Abbrechen</button>";
                     }
                 ?>
             </form>
