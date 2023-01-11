@@ -54,7 +54,7 @@ class PersonsModel extends Model
                 "inProject" => $inProject,
             ];
             if (isset($_POST["pwd"])) {
-                $data["password"] = $_POST["pwd"];
+                $data["password"] = password_hash($_POST["pwd"], PASSWORD_DEFAULT);
             }
             $this->person = $this->db->table("mitglieder");
             $this->person->where("mitglieder.email", $_POST["email"]);
