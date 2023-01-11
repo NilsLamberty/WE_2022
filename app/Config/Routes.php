@@ -25,7 +25,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-// $routes->setAutoRoute(false);
+ $routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -35,12 +35,15 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Login::index');
-$routes->get("/todo", "Todo::index");
-$routes->get("/projects", "Projects::index");
-$routes->get("/exercises", "Exercises::index");
-$routes->get("/persons", "Persons::index");
-$routes->get("/reiter", "Reiter::index");
+//$routes->get("/", 'Login::index');
+//$routes->post("/", "Login::index");
+//$routes->get("/todo", "Todo::index");
+//$routes->get("/projects", "Projects::index");
+//$routes->get("/exercises", "Tasks::index");
+//$routes->get("/persons", "Persons::index");
+//$routes->get("/persons/updateDelete", "Persons::updateDelete");
+//$routes->post("/persons", "Persons::index");
+//$routes->get("/reiter", "Reiter::index");
 
 /*
  * --------------------------------------------------------------------

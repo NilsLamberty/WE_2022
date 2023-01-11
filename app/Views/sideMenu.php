@@ -2,7 +2,7 @@
 <div class="col-md-2 pb-3">
 
     <ul class="list-group">
-        <li class="list-group-item text-primary"><a href="<?= base_url() ?>" class="link-primary text-decoration-none">Login</a></li>
+        <li class="list-group-item text-primary"><a href="<?= base_url() ?>" class="link-danger text-decoration-none">LogOut</a></li>
         <li class="list-group-item text-primary"><a href="<?= base_url() . "/projects" ?>" class="link-primary text-decoration-none">Projekte</a></li>
         <li class="list-group-item text-primary"><a href="<?= base_url() . "/todo" ?>" class="link-primary text-decoration-none">Aktuelles Projekt</a></li>
         <ul class="list-group ps-4">

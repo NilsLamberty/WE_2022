@@ -6,14 +6,14 @@
 
     <!-- login option -->
     <div class="col-8">
-        <form>
+        <form action="<?php base_url() ?>" method="post">
             <div class="form-group pb-2">
                 <label for="email">Email-Adresse:</label>
-                <input type="email" class="form-control" id="email" placeholder="Email-Adresse eingeben">
+                <input type="email" class="form-control" id="email" placeholder="Email-Adresse eingeben" name="mail">
             </div>
             <div class="form-group pb-2">
                 <label for="pwd">Passwort</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Passwort">
+                <input type="password" class="form-control" id="pwd" placeholder="Passwort" name="password">
             </div>
             <div class="form-check pb-2">
                 <input class="form-check-input" type="checkbox" value="" id="ch">

@@ -6,9 +6,16 @@ class Projects extends BaseController
 {
     public function index()
     {
-        $data["title"] = "Projekte";
 
-        echo view("templates/header", $data);
-        echo view("projects");
+        if (isset($_SESSION["loggedIn"])) {
+
+            $data["title"] = "Projekte";
+
+            echo view("templates/header", $data);
+            echo view("projects");
+        }
+        else {
+            return redirect()->to(base_url());
+        }
     }
 }
