@@ -72,12 +72,26 @@ class PersonsModel extends Model
 //        $this->person->insert($data);
     }
 
-    public function deletePerson($id = NULL) {
-        if ($id != NULL) {
+
+    public function deletePerson() {
+
+        // get id
+        $id = -1;
+        $tableData = $this->getData();
+        foreach ($tableData as $mitglied) {
+            if ($mitglied["email"] == $_POST["email"]) {
+                 $id = $mitglied["id"];
+            }
+        }
+
+        // delete person
+        if ($id != -1) {
             $this->person = $this->db->table("mitglieder");
             $this->person->where("mitglieder.id", $id);
             $this->person->delete();
         }
+
+
     }
 
 
@@ -91,4 +105,6 @@ class PersonsModel extends Model
             return $result->getRowArray();
         }
     }
+
+
 }

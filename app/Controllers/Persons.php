@@ -16,7 +16,15 @@ class Persons extends BaseController
             $model = new PersonsModel();
 
             if (!empty($_POST)) {
-                $model->createPerson();
+
+                if (isset($_POST["save"])) {
+                    $model -> createPerson();
+                }
+
+                if (isset($_POST["delete"])) {
+                    $model -> deletePerson();
+                }
+
             }
 
             $data["mitglieder"] = $model->getData();
@@ -31,32 +39,18 @@ class Persons extends BaseController
     }
 
 
-    public function editPerson($data) {
-        $data["title"] = "Personen";
+    public function updateDelete($id, $todo) {
+
 
         $personModel = new PersonsModel();
+
+        $data = $personModel->getPerson($id);
+        $data["title"] = "Personen";
         $data["mitglieder"] = $personModel->getData();
+        $data["updateDelete"] = $todo;
 
         echo view ("templates/header", $data);
         echo view("persons", $data);
-    }
-
-
-    public function updateDelete($id, $todo) {
-
-        // delete
-        if ($todo == 0) {
-            $personModel = new PersonsModel();
-            $personModel->deletePerson($id);
-            return redirect()->to(base_url() . "/persons");
-        }
-
-        // update
-        if ($todo == 1) {
-            $personModel = new PersonsModel();
-            $data = $personModel->getPerson($id);
-            $this->editPerson($data);
-        }
 
     }
 

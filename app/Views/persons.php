@@ -1,7 +1,7 @@
 <div class="row p-3">
 
     <!-- side menu -->
-    <? include ("sideMenu.php"); ?>
+    <?= include ("sideMenu.php"); ?>
 
 
     <div class="col-md-8">
@@ -129,11 +129,23 @@
                         } ?>>
                     <label for="checkBox" class="form-label">Dem Projekt zugeordnet</label>
                 </div>
-                <button type="submit" class="btn btn-primary name="save">Speichern</button>
+                <?php
+                    if (isset($updateDelete)) {
+                        if ($updateDelete == 1) {
+                            echo "<button type='submit' class='btn btn-primary' name='save'>Speichern</button>";
+                        }
+                        if ($updateDelete == 0) {
+                            echo "<button type='submit' class='btn btn-danger' name='delete'>Löschen</button>";
+                        }
+                    }
+                    else {
+                        echo "<button type='submit' class='btn btn-primary' name='save'>Speichern</button>";
+                    }
+                ?>
                 <button type="reset" class="btn btn-info">Reset</button>
                 <?php
                     if (isset($username)) {
-                        echo "<button type='reset' class='btn btn-info' name='abort'>Abbrechen</button>";
+                        echo "<button type='button' class='btn btn-info' onclick='history.back()' name='abort'>Abbrechen</button>";
                     }
                 ?>
             </form>
