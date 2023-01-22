@@ -4,12 +4,12 @@ namespace App\Controllers;
 
 use App\Models\PersonsModel;
 
+#[\AllowDynamicProperties]
 class Persons extends BaseController
 {
     public function index()
     {
 
-        var_dump($_POST);
 
         if (isset($_SESSION["loggedIn"])) {
 

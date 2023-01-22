@@ -4,6 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+#[\AllowDynamicProperties]
 class PersonsModel extends Model
 {
     public function getData() {
@@ -60,16 +61,6 @@ class PersonsModel extends Model
             $this->person->where("mitglieder.email", $_POST["email"]);
             $this->person->update($data);
         }
-
-
-//        $data = [
-//            "username" => $_POST["name"],
-//            "email" => $_POST["email"],
-//            "inProject" => $inProject,
-//            "password" => password_hash($_POST["pwd"], PASSWORD_DEFAULT)
-//        ];
-//        $this->person = $this->db->table("mitglieder");
-//        $this->person->insert($data);
     }
 
 
@@ -95,7 +86,7 @@ class PersonsModel extends Model
     }
 
 
-    public function getPerson($id = NULL) {
+    public function getPerson($id = NULL, $name = NULL) {
         if ($id != NULL) {
             $this->person = $this->db->table("mitglieder");
             $this->person->select("username, email, inProject, password");
@@ -104,6 +95,41 @@ class PersonsModel extends Model
 
             return $result->getRowArray();
         }
+        if ($name != NULL) {
+            $this->person = $this->db->table("mitglieder");
+            $this->person->select("id");
+            $this->person->where("username", $name);
+            $result = $this->person->get();
+
+            return $result->getRowArray();
+        }
+    }
+
+
+    public function personInProject($projectID, $personID): bool
+    {
+        $this->person = $this->db->table("projekte_mitglieder");
+        $this->person->select("*");
+        $this->person->where("projekte_mitglieder.projektID", $projectID);
+        $this->person->where("projekte_mitglieder.mitgliedID", $personID);
+        $result = $this->person->get();
+
+        if (empty($result->getRowArray())) {
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    public function getPersonID($mail) {
+        $this->person = $this->db->table("mitglieder");
+        $this->person->select("id");
+        $this->person->where("mitglieder.email", $mail);
+        $result = $this->person->get();
+
+        return $result->getRowArray();
     }
 
 

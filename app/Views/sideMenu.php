@@ -7,7 +7,7 @@
         <li class="list-group-item text-primary"><a href="<?= base_url() . "/todo" ?>" class="link-primary text-decoration-none">Aktuelles Projekt</a></li>
         <ul class="list-group ps-4">
             <li class="list-group-item text-primary"><a href="<?= base_url() . "/reiter" ?>" class="link-primary text-decoration-none">Reiter</a></li>
-            <li class="list-group-item text-primary"><a href="<?= base_url() . "/exercises" ?>" class="link-primary text-decoration-none">Aufgaben</a></li>
+            <li class="list-group-item text-primary"><a href="<?= base_url() . "/tasks" ?>" class="link-primary text-decoration-none">Aufgaben</a></li>
             <li class="list-group-item text-primary"><a href="<?= base_url() . "/persons" ?>" class="link-primary text-decoration-none">Personen</a></li>
         </ul>
     </ul>

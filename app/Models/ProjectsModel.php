@@ -4,6 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+#[\AllowDynamicProperties]
 class ProjectsModel extends Model
 {
     public function getData() {
@@ -18,5 +19,92 @@ class ProjectsModel extends Model
         $result = $this->project->get();
 
         return $result->getRowArray();
+    }
+
+    public function createProject() {
+
+        // get id of person who creates / updates project
+        $email = $_SESSION["mail"];
+        $this->person = $this->db->table("mitglieder");
+        $this->person->select("id");
+        $this->person->where("email", $email);
+        $result = $this->person->get();
+
+
+
+        if (isset($_SESSION["updateID"])) {
+            $data = [
+                "name" => $_POST["projectName"],
+                "beschreibung" => $_POST["projectDescription"],
+                "erstellerID" => $result->getRowArray()["id"]
+            ];
+            $this->project = $this->db->table("projekte");
+            $this->project->where("projekte.id", $_SESSION["updateID"]);
+            $this->project->update($data);
+
+            $_SESSION["updateID"] = null;
+        }
+        else {
+
+            $data = [
+                "name" => $_POST["projectName"],
+                "beschreibung" => $_POST["projectDescription"],
+                "erstellerID" => $result->getRowArray()["id"]
+            ];
+            $this->project = $this->db->table("projekte");
+            $this->project->insert($data);
+        }
+
+    }
+
+    public function deleteProject() {
+
+        // get id
+        $id = -1;
+        $tableData = $this->getData();
+        foreach ($tableData as $project) {
+            if ($project["name"] == $_POST["select"]) {
+                $id = $project["id"];
+            }
+        }
+
+        if ($id != -1) {
+            $this->project = $this->db->table("projekte");
+            $this->project->where("projekte.id", $id);
+            $this->project->delete();
+
+            if ($id == $_SESSION["projectID"]) {
+                $_SESSION["projectID"] = null;
+            }
+
+        }
+
+    }
+
+    public function getDescription($name) {
+        if ($name != NULL) {
+
+            $this->project = $this->db->table("projekte");
+            $this->project->select("beschreibung");
+            $this->project->where("projekte.name", $name);
+            $result = $this->project->get();
+
+            return $result->getRowArray();
+
+        }
+    }
+
+
+    public function getProjectId($name) {
+        if ($name != NULL) {
+
+            $this->project = $this->db->table("projekte");
+            $this->project->select("id");
+            $this->project->where("projekte.name", $name);
+            $result = $this->project->get();
+
+            return $result->getRowArray();
+
+        }
     }
 }

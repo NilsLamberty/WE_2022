@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\PersonsModel;
 use App\Models\ProjectsModel;
 
+#[\AllowDynamicProperties]
 class Login extends BaseController
 {
 
@@ -12,15 +13,14 @@ class Login extends BaseController
     {
         helper(["form"]);
 
-        echo password_hash("234", PASSWORD_DEFAULT);
-
         if (isset($_SESSION["loggedIn"])) {
             $this->session->destroy();
         }
 
-        if (isset($_POST["mail"]) and isset($_POST["password"])) {
 
-            var_dump($_POST);
+
+        if ($this->validation->run($_POST, "login")) {
+
 
             $model = new PersonsModel();
             $data = $model->login();
@@ -44,13 +44,17 @@ class Login extends BaseController
                     return redirect()->to(base_url() . "/todo");
                 }
             }
-
         }
+        else if (isset($_POST["mail"]) or isset($_POST['password']) or isset($_POST["agb"])){
+            $data["error"] = $this->validation->getErrors();
+        }
+
+
 
         $data["title"] = "LogIn";
 
         echo view("templates/header", $data);
-        echo view('login');
+        echo view('login', $data);
     }
 
 }

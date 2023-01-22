@@ -19,6 +19,8 @@ use Psr\Log\LoggerInterface;
  *
  * For security be sure to declare any new methods as protected or private.
  */
+#[\AllowDynamicProperties]
+
 abstract class BaseController extends Controller
 {
     /**
@@ -49,5 +51,6 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
         $this->session = \Config\Services::session();
+        $this->validation = \Config\Services::validation();
     }
 }
