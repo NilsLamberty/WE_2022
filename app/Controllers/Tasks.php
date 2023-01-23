@@ -17,6 +17,9 @@ class Tasks extends BaseController
 
             if (!empty($_POST)) {
 
+//                var_dump($_POST);
+//                die();
+
                 if (isset($_POST["save"])) {
                     $model -> createTask();
                 }
@@ -47,7 +50,17 @@ class Tasks extends BaseController
         $data["title"] = "Aufgaben";
         $data["tasks"] = $model -> getProjectTasks();
         $data["updateDelete"] = $todo;
+        $data["personsForTasks"] = ($model -> getPersons($id));
 
+//        $personsForTask = $model -> getPersons($id);
+//
+//        $data["personsForTask"] = null;
+//
+//        foreach ($personsForTask as $p) {
+//            if ($p["list"] != null) {
+//                $data["personsForTask"] = $p;
+//            }
+//        }
 
         echo view("templates/header", $data);
         echo view("tasks", $data);

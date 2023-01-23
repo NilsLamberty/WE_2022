@@ -21,6 +21,7 @@
 
                     $reiterModel = new \App\Models\ReiterModel();
                     $personModel = new \App\Models\PersonsModel();
+                    $tasksModel = new \App\Models\TasksModel();
 
                     if (isset($tasks) and !(empty($tasks))) {
                         // create each row
@@ -29,11 +30,31 @@
                             // check if all attributes are set
                             if (isset($t["name"]) and isset($t["beschreibung"]) and isset($t["erstellerID"]) and isset($t["reiterID"])) {
 
+                                // get all involved persons
+                                $allPersons = $tasksModel->getPersons($t["id"]);
+                                $string = "";
+                                foreach ($allPersons as $p) {
+                                    if ($p["list"] != null) {
+//                                        $s = $allPersons[$t["id"]-1]["list"];
+                                        $ids = explode("\n", $p["list"]);
+                                        foreach ($ids as $i) {
+                                            $nameP = ($personModel->getPerson($i));
+                                            if ($nameP != null) {
+                                                $string = $string . $nameP["username"] . ", ";
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                                $string = substr($string, 0, -2);
+
                                 echo("<tr>");
                                 echo("<td>" . $t["name"] . "</td>");
                                 echo("<td>" . $t["beschreibung"] . "</td>");
                                 echo("<td>" . $reiterModel->getReiter($t["reiterID"])["name"] . "</td>");
-                                echo("<td>" . $personModel->getPerson($t["erstellerID"])["username"] . "</td>");
+//                                echo("<td>" . $personModel->getPerson($t["erstellerID"])["username"] . "</td>");
+                                echo("<td>" . $string . "</td>");
                                 // create icons for last col
                                 echo("<td>");
                                 $delete = "<a type='button' href='" . base_url('/Tasks/updateDelete/' . $t["id"] . '/0') . "' name='deleteButton' class='btn float-end'><i class='fas fa-trash-alt' style='color: blue'></i></a>";
@@ -119,17 +140,26 @@
                     </select>
                 </div>
                 <div class="form-group pb-2">
-                    <label for="personSelect" class="form-label">Zuständig:</label>
-                    <select class="form-select" id="personSelect" name="selectPerson">
+                    <label for="selectBox" class="form-label">Zuständig:</label>
+                    <select class="form-control" id="selectBox" name="selectMultiple[]" multiple>
                         <?php
 
                             $personModel = new \App\Models\PersonsModel();
                             $persons = $personModel -> getData();
-                            foreach ($persons as $p) {
-                                if (isset($erstellerID) and $erstellerID == $p["id"]) {
-                                    echo "<option selected>" . $p["username"] . "</option>";
-                                } else {
-                                    echo "<option>" . $p["username"] ."</option>";
+
+                            if (isset($personsForTasks) and isset($id)) {
+                                $string = $personsForTasks[$id-1]["list"];
+                                $ids = explode("\n", $string);
+                                foreach ($persons as $p) {
+                                    if (in_array($p["id"], $ids)) {
+                                        echo "<option value='" . $p['id'] . "' selected>" . $p["username"] . "</option>";
+                                    } else {
+                                        echo "<option value='" . $p['id'] . "'>" . $p["username"] . "</option>";
+                                    }
+                                }
+                            } else {
+                                foreach ($persons as $p) {
+                                    echo "<option value='" . $p['id'] . "'>" . $p["username"] . "</option>";
                                 }
                             }
 

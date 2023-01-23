@@ -96,12 +96,18 @@ class PersonsModel extends Model
             return $result->getRowArray();
         }
         if ($name != NULL) {
-            $this->person = $this->db->table("mitglieder");
-            $this->person->select("id");
-            $this->person->where("username", $name);
-            $result = $this->person->get();
 
-            return $result->getRowArray();
+            $ids = [];
+
+            foreach ($name as $n) {
+                $this->person = $this->db->table("mitglieder");
+                $this->person->select("id");
+                $this->person->where("username", $name);
+                $result = $this->person->get();
+                $ids[] = $result->getRowArray();
+            }
+
+            return $ids;
         }
     }
 

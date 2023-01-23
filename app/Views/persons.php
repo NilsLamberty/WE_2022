@@ -33,7 +33,7 @@
                                 // if person is in project -> checkbox is checked
                                 $model = new \App\Models\PersonsModel();
                                 $id = $model->getPersonID($person["email"])["id"];
-                                echo $id;
+
                                 if ($model->personInProject($_SESSION["projectID"], $model->getPersonID($person["email"])["id"])) {
                                     echo("<td><input class='form-check-input' type='checkbox' value='' checked></td>");
                                 }
