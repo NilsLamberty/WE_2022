@@ -17,9 +17,6 @@ class Tasks extends BaseController
 
             if (!empty($_POST)) {
 
-//                var_dump($_POST);
-//                die();
-
                 if (isset($_POST["save"])) {
                     $model -> createTask();
                 }
@@ -42,6 +39,9 @@ class Tasks extends BaseController
     }
 
 
+    // function receives task id + todo
+    // 0 -> delete
+    // 1 -> create / update
     public function updateDelete($id, $todo) {
 
         $model = new TasksModel();

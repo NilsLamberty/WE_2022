@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 #[\AllowDynamicProperties]
 class ReiterModel extends Model
 {
+    // get reiter of current project
     public function getData() {
         $this->reiter = $this->db->table("reiter");
         $this->reiter->select("*");
@@ -16,6 +17,7 @@ class ReiterModel extends Model
         return $result->getResultArray();
     }
 
+    // get reiter by id or name
     public function getReiter($id = NULL, $name = NULL) {
 
         if ($id != NULL) {
@@ -38,6 +40,7 @@ class ReiterModel extends Model
     }
 
 
+    // create reiter
     public function createReiter() {
 
         if (isset($_POST["id"]) and !empty($_POST["id"])) {
@@ -62,6 +65,7 @@ class ReiterModel extends Model
     }
 
 
+    // delete reiter
     public function deleteReiter() {
         $this->reiter = $this->db->table("reiter");
         $this->reiter->where("reiter.id", $_POST["id"]);

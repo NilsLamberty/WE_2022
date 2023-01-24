@@ -7,11 +7,13 @@ use CodeIgniter\Model;
 #[\AllowDynamicProperties]
 class TasksModel extends Model
 {
+    // get all tasks
     public function getData() {
         $result = $this->db->query("SELECT * FROM aufgaben");
         return $result->getResultArray();
     }
 
+    // get tasks of current project
     public function getProjectTasks() {
 
         // get Reiter ids of current project (project id stored in session)
@@ -39,6 +41,7 @@ class TasksModel extends Model
 
     }
 
+    // get task by id
     public function getTask($id = NULL) {
 
         if($id != null) {
@@ -52,6 +55,7 @@ class TasksModel extends Model
 
     }
 
+    // create task
     public function createTask() {
 
         // get erstellerID
@@ -130,6 +134,7 @@ class TasksModel extends Model
     }
 
 
+    // delete task
     public function deleteTask() {
         $this->task = $this->db->table("aufgaben");
         $this->task->where("aufgaben.id", $_POST["id"]);
@@ -137,7 +142,7 @@ class TasksModel extends Model
 
     }
 
-
+    // get involved persons (n:n)
     public function getPersons($id) {
 
         $this->task = $this->db->table("aufgaben");
@@ -150,6 +155,7 @@ class TasksModel extends Model
 
     }
 
+    // returns the highest task id
     public function getHighestTaskId() {
         $this->tasks = $this->db->table("aufgaben");
         $this->tasks->select("max(id)");
@@ -159,6 +165,7 @@ class TasksModel extends Model
     }
 
 
+    // delete rows in aufgaben_mitglieder if task is deleted
     public function deleteAllTaskPersonIds() {
           $this->tasks = $this->db->table("aufgaben_mitglieder") ;
           $this->tasks->where("aufgabeID", $_POST["id"]);

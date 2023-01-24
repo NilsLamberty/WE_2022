@@ -18,7 +18,7 @@ class Login extends BaseController
         }
 
 
-
+        // validate inputs
         if ($this->validation->run($_POST, "login")) {
 
 
@@ -45,6 +45,7 @@ class Login extends BaseController
                 }
             }
         }
+        // if validation went wrong -> show errors
         else if (isset($_POST["mail"]) or isset($_POST['password']) or isset($_POST["agb"])){
             $data["error"] = $this->validation->getErrors();
         }

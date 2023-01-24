@@ -15,6 +15,7 @@ class Persons extends BaseController
 
             $model = new PersonsModel();
 
+            // if $_POST not empty -> save or delete person
             if (!empty($_POST)) {
 
                 if (isset($_POST["save"])) {
@@ -39,6 +40,9 @@ class Persons extends BaseController
     }
 
 
+    // function receives person id + todo
+    // 0 -> delete
+    // 1 -> create / update
     public function updateDelete($id, $todo) {
 
 

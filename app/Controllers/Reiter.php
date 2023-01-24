@@ -13,6 +13,7 @@ class Reiter extends BaseController
 
             $model = new ReiterModel();
 
+            // if $_POST not empty -> delete or create reiter
             if (!empty($_POST)) {
 
                 if (isset($_POST["save"])) {
@@ -37,6 +38,9 @@ class Reiter extends BaseController
     }
 
 
+    // function receives reiter id + todo
+    // 0 -> delete
+    // 1 -> create / update
     public function updateDelete($id, $todo) {
 
         $model = new ReiterModel();

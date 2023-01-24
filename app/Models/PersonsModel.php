@@ -7,11 +7,13 @@ use CodeIgniter\Model;
 #[\AllowDynamicProperties]
 class PersonsModel extends Model
 {
+    // get all data
     public function getData() {
         $result = $this->db->query("SELECT * FROM mitglieder");
         return $result->getResultArray();
     }
 
+    // get login person
     public function login() {
         $this->personen = $this->db->table("mitglieder");
         $this->personen->select("password, username, id");
@@ -21,7 +23,7 @@ class PersonsModel extends Model
         return $result->getRowArray();
     }
 
-
+    // create new person
     public function createPerson() {
 
         $inProject = false;
@@ -63,7 +65,7 @@ class PersonsModel extends Model
         }
     }
 
-
+    // delete person
     public function deletePerson() {
 
         // get id
@@ -85,7 +87,7 @@ class PersonsModel extends Model
 
     }
 
-
+    // get person by id or by name
     public function getPerson($id = NULL, $name = NULL) {
         if ($id != NULL) {
             $this->person = $this->db->table("mitglieder");
@@ -111,7 +113,7 @@ class PersonsModel extends Model
         }
     }
 
-
+    // check whether person is in current project
     public function personInProject($projectID, $personID): bool
     {
         $this->person = $this->db->table("projekte_mitglieder");
@@ -129,6 +131,7 @@ class PersonsModel extends Model
 
     }
 
+    // get person id by mail
     public function getPersonID($mail) {
         $this->person = $this->db->table("mitglieder");
         $this->person->select("id");

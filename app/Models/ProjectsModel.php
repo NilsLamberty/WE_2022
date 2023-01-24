@@ -7,11 +7,13 @@ use CodeIgniter\Model;
 #[\AllowDynamicProperties]
 class ProjectsModel extends Model
 {
+    // get all projects
     public function getData() {
         $result = $this->db->query("SELECT * FROM projekte");
         return $result->getResultArray();
     }
 
+    // get projects by person with mitgliedID
     public function getProject($mitgliedId) {
         $this->project = $this->db->table("projekte_mitglieder");
         $this->project->select("projektID");
@@ -21,6 +23,7 @@ class ProjectsModel extends Model
         return $result->getRowArray();
     }
 
+    // create new project
     public function createProject() {
 
         // get id of person who creates / updates project
@@ -57,6 +60,7 @@ class ProjectsModel extends Model
 
     }
 
+    // delete project
     public function deleteProject() {
 
         // get id
@@ -81,6 +85,7 @@ class ProjectsModel extends Model
 
     }
 
+    // get project description
     public function getDescription($name) {
         if ($name != NULL) {
 
@@ -95,6 +100,7 @@ class ProjectsModel extends Model
     }
 
 
+    // get project id
     public function getProjectId($name) {
         if ($name != NULL) {
 
