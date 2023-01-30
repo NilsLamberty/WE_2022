@@ -13,6 +13,7 @@ class Todo extends BaseController
             $data["title"] = "Todos (Aktuelles Projekt)";
 
             echo view("templates/header", $data);
+            echo view("templates/navigation");
             echo view("todo");
         }
         else {

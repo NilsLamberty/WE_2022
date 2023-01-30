@@ -32,6 +32,7 @@ class Persons extends BaseController
 
             $data["title"] = "Personen";
             echo view("templates/header", $data);
+            echo view("templates/navigation", $data);
             echo view("persons", $data);
         }
         else {
@@ -54,6 +55,7 @@ class Persons extends BaseController
         $data["updateDelete"] = $todo;
 
         echo view ("templates/header", $data);
+        echo view("templates/navigation", $data);
         echo view("persons", $data);
 
     }

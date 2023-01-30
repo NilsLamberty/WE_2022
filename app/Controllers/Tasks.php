@@ -31,6 +31,7 @@ class Tasks extends BaseController
             $data["tasks"] = $model -> getProjectTasks();
 
             echo view("templates/header", $data);
+            echo view("templates/navigation", $data);
             echo view("tasks", $data);
         }
         else {
@@ -63,6 +64,7 @@ class Tasks extends BaseController
 //        }
 
         echo view("templates/header", $data);
+        echo view("templates/navigation", $data);
         echo view("tasks", $data);
     }
 }

@@ -1,7 +1,9 @@
 <div class="row p-3">
 
+
+    <div class="col-md-2"></div>
     <!-- side menu -->
-    <?php include ("sideMenu.php"); ?>
+<!--    --><?php //include ("sideMenu.php"); ?>
 
     <div class="col-md-8">
 

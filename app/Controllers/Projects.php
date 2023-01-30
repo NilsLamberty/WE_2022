@@ -49,6 +49,7 @@ class Projects extends BaseController
             $data["projects"] = $model->getData();
 
             echo view("templates/header", $data);
+            echo view("templates/navigation", $data);
             echo view("projects", $data);
         }
         else {

@@ -30,6 +30,7 @@ class Reiter extends BaseController
             $data["reiter"] = $model->getData();
 
             echo view("templates/header", $data);
+            echo view("templates/navigation", $data);
             echo view("reiter", $data);
         }
         else {
@@ -51,6 +52,7 @@ class Reiter extends BaseController
         $data["updateDelete"] = $todo;
 
         echo view("templates/header", $data);
+        echo view("templates/navigation", $data);
         echo view("reiter", $data);
     }
 }

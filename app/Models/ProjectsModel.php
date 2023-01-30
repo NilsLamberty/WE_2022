@@ -113,4 +113,16 @@ class ProjectsModel extends Model
 
         }
     }
+
+    // get project name by id
+    public function getProjectName($id) {
+        if ($id != null) {
+            $this->project = $this->db->table("projekte");
+            $this->project->select("name");
+            $this->project->where("projekte.id", $id);
+            $result = $this->project->get();
+
+            return $result->getRowArray();
+        }
+    }
 }
