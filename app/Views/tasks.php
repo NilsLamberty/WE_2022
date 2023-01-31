@@ -1,11 +1,11 @@
 <div class="row p-3">
 
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
 
     <!-- side menu -->
 <!--    --><?php //include ("sideMenu.php"); ?>
 
-    <div class="col-md-8">
+    <div class="col-md-10">
 
         <!-- table -->
         <div class="row pb-2 ps-3 pe-3">
@@ -196,7 +196,7 @@
     </div>
 
     <!-- free space on right side -->
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
 
 </div>
 
