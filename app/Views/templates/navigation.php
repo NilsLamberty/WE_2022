@@ -36,9 +36,9 @@
                         }
 
                     ?>
-                    <a href="<?= base_url() ?>" class=" dropdown-item link-danger text-decoration-none">LogOut</a>
                 </div>
             </li>
         </ul>
     </div>
+    <a type="button" class="btn btn-primary me-2" href="<?= base_url() ?>">Logout</a>
 </nav>
