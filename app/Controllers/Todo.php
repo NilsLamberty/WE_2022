@@ -11,10 +11,11 @@ class Todo extends BaseController
 
 
             $data["title"] = "Todos (Aktuelles Projekt)";
+            $data["currentProjectID"] = $_SESSION["projectID"];
 
             echo view("templates/header", $data);
             echo view("templates/navigation");
-            echo view("todo");
+            echo view("todo", $data);
         }
         else {
             return redirect()->to(base_url());

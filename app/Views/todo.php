@@ -2,43 +2,37 @@
 
     <div class="col-md-1"></div>
 
-    <!-- side menu -->
-<!--    --><?php //include ("sideMenu.php"); ?>
-
     <!-- main content -->
     <div class="col-md-10">
 
         <!-- cards -->
         <div class="row">
 
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">ToDo:</div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">HTML Datei erstellen</li>
-                        <li class="list-group-item">CSS Datei erstellen</li>
-                    </ul>
-                </div>
-            </div>
+            <?php
 
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">Erledigt:</div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">PC einschalten</li>
-                        <li class="list-group-item">Kaffe trinken</li>
-                    </ul>
-                </div>
-            </div>
+                $reiterModel = new \App\Models\ReiterModel();
+                $reiter = $reiterModel -> getReiterInProject($currentProjectID);
 
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">Verschoben:</div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Für die Uni lernen</li>
-                    </ul>
-                </div>
-            </div>
+                foreach ($reiter as $r) {
+                    echo("
+                        <div class='col'>
+                            <div class='card'>
+                                <div class='card-header'>" . $r["name"] ."</div>
+                                <ul class='list-group list-group-flush'>");
+
+                    $taskModel = new \App\Models\TasksModel();
+                    $tasks = $taskModel -> getTasksOfReiter($r["id"]);
+                    foreach ($tasks as $t) {
+                        echo("<li class='list-group-item'>" . $t["name"] . "</li>");
+                    }
+
+                    echo ("     </ul>
+                            </div>
+                        </div>
+                    ");
+                }
+
+            ?>
 
         </div>
 

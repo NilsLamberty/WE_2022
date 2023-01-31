@@ -27,6 +27,8 @@
                     <?php
 
                         if ($_SESSION["projectID"] != null) {
+                            $todo = base_url() . "/todo";
+                            echo "<a class='dropdown-item link-primary text-decoration-none' href='" . $todo . "'>Übersicht</a>";
                             $reiter = base_url() . "/reiter";
                             echo "<a class='dropdown-item link-primary text-decoration-none' href='" . $reiter . "'>Reiter</a>";
                             $tasks = base_url() . "/tasks";

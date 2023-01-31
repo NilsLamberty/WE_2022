@@ -174,4 +174,16 @@ class TasksModel extends Model
           $this->tasks->where("aufgabeID", $_POST["id"]);
           $this->tasks->delete();
     }
+
+    // get all tasks of reiter with reiterID
+    public function getTasksOfReiter($reiterID) {
+        if ($reiterID != null) {
+            $this->task = $this->db->table("aufgaben");
+            $this->task->select("*");
+            $this->task->where("aufgaben.reiterID", $reiterID);
+            $result = $this->task->get();
+
+            return $result->getResultArray();
+        }
+    }
 }

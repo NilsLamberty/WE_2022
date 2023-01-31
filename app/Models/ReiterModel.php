@@ -74,4 +74,17 @@ class ReiterModel extends Model
             $this->reiter->delete();
         }
     }
+
+
+    // get all reiter in currentProjects
+    public function getReiterInProject($projectID) {
+        if ($projectID != null) {
+            $this->reiter = $this->db->table("reiter");
+            $this->reiter->select("*");
+            $this->reiter->where("reiter.projektID", $projectID);
+            $result = $this->reiter->get();
+
+            return $result->getResultArray();
+        }
+    }
 }
