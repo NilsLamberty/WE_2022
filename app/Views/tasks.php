@@ -191,17 +191,6 @@
                     <input name="id" value="<?= $id ?? '' ?>" id="taskIDValue">
                 </div>
             </form>
-
-            <script>
-                function deleteTask() {
-                    let del = confirm("Soll die Aufgabe gelöscht werden?");
-                    if (del === false) {
-                        const element = document.getElementById("taskIDValue");
-                        element.value = "-1";
-                    }
-                }
-            </script>
-
         </div>
 
     </div>

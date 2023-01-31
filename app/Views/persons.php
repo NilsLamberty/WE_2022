@@ -140,17 +140,6 @@
                     }
                 ?>
             </form>
-
-            <script>
-                function deletePerson() {
-                    let del = confirm("Soll die Person gelöscht werden?");
-                    if (del === false) {
-                        const element = document.getElementById("email");
-                        element.value = "";
-                    }
-                }
-            </script>
-
         </div>
     </div>
 

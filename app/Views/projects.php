@@ -30,16 +30,6 @@
             </form>
         </div>
 
-        <script>
-            function deleteProject() {
-                let del = confirm("Soll das Projekt gelöscht werden?");
-                if (del === false) {
-                    const element = document.getElementById("selectProject");
-                    element.innerHTML = "";
-                }
-            }
-        </script>
-
         <!-- edit option -->
         <div class="row">
             <label class="form-label form-header">Projekt bearbeiten/erstellen:</label>

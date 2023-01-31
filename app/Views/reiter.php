@@ -101,17 +101,6 @@
                     <input name="id" value="<?= $id ?? '' ?>" id="reiterIDValue">
                 </div>
             </form>
-
-            <script>
-                function deleteReiter() {
-                    let del = confirm("Soll der Reiter gelöscht werden?");
-                    if (del === false) {
-                        const element = document.getElementById("reiterIDValue")
-                        element.value = "-1";
-                    }
-                }
-            </script>
-
         </div>
 
     </div>
