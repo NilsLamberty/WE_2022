@@ -67,8 +67,11 @@ class ReiterModel extends Model
 
     // delete reiter
     public function deleteReiter() {
-        $this->reiter = $this->db->table("reiter");
-        $this->reiter->where("reiter.id", $_POST["id"]);
-        $this->reiter->delete();
+
+        if ($_POST["id"] != -1) {
+            $this->reiter = $this->db->table("reiter");
+            $this->reiter->where("reiter.id", $_POST["id"]);
+            $this->reiter->delete();
+        }
     }
 }

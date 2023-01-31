@@ -136,9 +136,12 @@ class TasksModel extends Model
 
     // delete task
     public function deleteTask() {
-        $this->task = $this->db->table("aufgaben");
-        $this->task->where("aufgaben.id", $_POST["id"]);
-        $this->task->delete();
+
+        if ($_POST["id"] != -1) {
+            $this->task = $this->db->table("aufgaben");
+            $this->task->where("aufgaben.id", $_POST["id"]);
+            $this->task->delete();
+        }
 
     }
 

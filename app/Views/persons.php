@@ -126,7 +126,7 @@
                             echo "<button type='submit' class='btn btn-primary' name='save'>Speichern</button>";
                         }
                         if ($updateDelete == 0) {
-                            echo "<button type='submit' class='btn btn-danger' name='delete'>Löschen</button>";
+                            echo "<button type='submit' class='btn btn-danger' name='delete' onclick='deletePerson()'>Löschen</button>";
                         }
                     }
                     else {
@@ -140,6 +140,17 @@
                     }
                 ?>
             </form>
+
+            <script>
+                function deletePerson() {
+                    let del = confirm("Soll die Person gelöscht werden?");
+                    if (del === false) {
+                        const element = document.getElementById("email");
+                        element.value = "";
+                    }
+                }
+            </script>
+
         </div>
     </div>
 

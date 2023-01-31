@@ -81,7 +81,7 @@
                 <?php
                     if (isset($updateDelete)) {
                         if ($updateDelete == 0) {
-                            echo "<button type='submit' class='btn btn-danger' name='delete'>Löschen</button>";
+                            echo "<button type='submit' class='btn btn-danger' name='delete' onclick='deleteReiter()'>Löschen</button>";
                         }
                         if ($updateDelete == 1) {
                             echo "<button type='submit' class='btn btn-primary' name='save'>Speichern</button>";
@@ -98,9 +98,20 @@
                 }
                 ?>
                 <div class="invisible">
-                    <input name="id" value="<?= $id ?? '' ?>">
+                    <input name="id" value="<?= $id ?? '' ?>" id="reiterIDValue">
                 </div>
             </form>
+
+            <script>
+                function deleteReiter() {
+                    let del = confirm("Soll der Reiter gelöscht werden?");
+                    if (del === false) {
+                        const element = document.getElementById("reiterIDValue")
+                        element.value = "-1";
+                    }
+                }
+            </script>
+
         </div>
 
     </div>

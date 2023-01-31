@@ -171,7 +171,7 @@
                 <?php
                 if (isset($updateDelete)) {
                     if ($updateDelete == 0) {
-                        echo "<button type='submit' class='btn btn-danger' name='delete'>Löschen</button>";
+                        echo "<button type='submit' class='btn btn-danger' name='delete' onclick='deleteTask()'>Löschen</button>";
                     }
                     if ($updateDelete == 1) {
                         echo "<button type='submit' class='btn btn-primary' name='save'>Speichern</button>";
@@ -188,9 +188,20 @@
                 }
                 ?>
                 <div class="invisible">
-                    <input name="id" value="<?= $id ?? '' ?>">
+                    <input name="id" value="<?= $id ?? '' ?>" id="taskIDValue">
                 </div>
             </form>
+
+            <script>
+                function deleteTask() {
+                    let del = confirm("Soll die Aufgabe gelöscht werden?");
+                    if (del === false) {
+                        const element = document.getElementById("taskIDValue");
+                        element.value = "-1";
+                    }
+                }
+            </script>
+
         </div>
 
     </div>

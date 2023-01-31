@@ -10,8 +10,8 @@
         <!-- select option -->
         <div class="row pb-2">
             <label class="form-label form-header">Projekt Auswählen</label>
-            <form action="<?= base_url() . '/projects' ?>" method="post">
-                <select class="form-select mb-2" name="select">
+            <form action="<?= base_url() . '/projects' ?>" method="post" id="deleteProjectForm">
+                <select class="form-select mb-2" name="select" id="selectProject">
                     <option selected>- bitte auswählen - </option>
 
                     <?php
@@ -26,9 +26,19 @@
                 
                 <button type="submit" class="btn btn-primary" name="choose">Auswählen</button>
                 <button type="submit" class="btn btn-primary" name="update">Bearbeiten</button>
-                <button type="submit" class="btn btn-danger" name="delete">Löschen</button>
+                <button type="submit" class="btn btn-danger" name="delete" onclick="deleteProject()">Löschen</button>
             </form>
         </div>
+
+        <script>
+            function deleteProject() {
+                let del = confirm("Soll das Projekt gelöscht werden?");
+                if (del === false) {
+                    const element = document.getElementById("selectProject");
+                    element.innerHTML = "";
+                }
+            }
+        </script>
 
         <!-- edit option -->
         <div class="row">
